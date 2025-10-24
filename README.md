@@ -72,13 +72,13 @@ src/
 This package assumes React (18+ / 19), TypeScript, and a Node server that can talk to AWS Chime.
 
 ```bash
-npm install @airoom/chime-calls
+npm install @tareq0065/chime-calls
 ```
 
 or
 
 ```bash
-yarn add @airoom/chime-calls
+yarn add @tareq0065/chime-calls
 ```
 
 (When developing locally in a monorepo, you can use `npm link` / `workspace:*` for this package.)
@@ -133,7 +133,7 @@ import {
   CallModal,
   useMeeting,
   type UserInfo,
-} from "@airoom/chime-calls";
+} from "@tareq0065/chime-calls";
 import MediaDiag from "./MediaDiag";
 
 function useSelfFromQuery(): UserInfo {

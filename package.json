@@ -13,7 +13,9 @@
     },
     "./assets/*": "./dist/assets/*"
   },
-  "files": ["dist/**/*"],
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "dev:server": "tsx src/server/dev.ts",
     "dev:demo": "vite --config examples/vite-demo/vite.config.ts",
