@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+
+    "declaration": true,
+    "emitDeclarationOnly": false,
+
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["src/ui/**/*", "src/hooks/**/*", "src/permissions/**/*", "src/index.ts", "src/ui/**/*", "src/CallModal.tsx", "src/MeetingProvider.tsx"]
+}

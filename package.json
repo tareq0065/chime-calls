@@ -1,0 +1,53 @@
+{
+  "name": "@airoom/chime-calls",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./assets/*": "./dist/assets/*"
+  },
+  "files": ["dist/**/*"],
+  "scripts": {
+    "dev:server": "tsx src/server/dev.ts",
+    "dev:demo": "vite --config examples/vite-demo/vite.config.ts",
+    "build:ui": "tsup --config tsup.config.ts --env.UI",
+    "build:server": "tsup --config tsup.config.ts --env.SERVER",
+    "build:assets": "node -e \"fs.cpSync('src/assets','dist/assets',{recursive:true})\"",
+    "build": "rm -rf dist && tsup && npm run build:assets"
+  },
+  "author": {
+    "name": "Tareq Aziz",
+    "email": "tareqaziz0065@gmail.com",
+    "url": "https://ai.gscodes.dev"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-chime-sdk-meetings": "^3.634.0",
+    "amazon-chime-sdk-js": "^3.17.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.30",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "prettier": "^3.6.2",
+    "tsup": "^8.5.0",
+    "tsx": "^4.15.7",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.2"
+  }
+}
