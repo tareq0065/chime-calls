@@ -1,6 +1,6 @@
 {
   "name": "@tareq0065/chime-calls",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": false,
   "type": "module",
   "main": "./dist/index.js",
@@ -27,6 +27,14 @@
     "email": "tareqaziz0065@gmail.com",
     "url": "https://ai.gscodes.dev"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tareq0065/chime-calls.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tareq0065/chime-calls/issues"
+  },
+  "homepage": "https://github.com/tareq0065/chime-calls#readme",
   "license": "MIT",
   "dependencies": {
     "@aws-sdk/client-chime-sdk-meetings": "^3.634.0",
