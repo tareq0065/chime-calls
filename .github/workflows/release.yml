@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
-          scope: '@airoom'
+          scope: '@tareq0065'
           always-auth: true
 
       # Write auth to the file npm actually uses on GitHub runners
@@ -33,11 +33,11 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > "$NPM_CONFIG_USERCONFIG"
       # (Do NOT run `npm whoami` here; it fails if npm ping rate-limits. The publish step will verify.)
 
-      # Make sure @airoom publishes to npmjs, not GitHub Packages
-      - name: Force npmjs registry for @airoom
+      # Make sure @tareq0065 publishes to npmjs, not GitHub Packages
+      - name: Force npmjs registry for @tareq0065
         run: |
           if [ -f .npmrc ]; then
-            sed -i 's#@airoom:registry=.*#@airoom:registry=https://registry.npmjs.org#g' .npmrc || true
+            sed -i 's#@tareq0065:registry=.*#@tareq0065:registry=https://registry.npmjs.org#g' .npmrc || true
           fi
 
       - name: Install deps (root + workspaces)
@@ -45,3 +45,6 @@ jobs:
 
       - name: Build package
         run: npm run build
+
+      - name: Publish to npm
+        run: npm publish --access public
