@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (npmjs)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+          scope: '@airoom'
+          always-auth: true
+
+      # Write auth to the file npm actually uses on GitHub runners
+      - name: Configure npm auth
+        run: |
+          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
+            echo "❌ NPM_TOKEN secret is missing"; exit 1
+          fi
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > "$NPM_CONFIG_USERCONFIG"
+      # (Do NOT run `npm whoami` here; it fails if npm ping rate-limits. The publish step will verify.)
+
+      # Make sure @airoom publishes to npmjs, not GitHub Packages
+      - name: Force npmjs registry for @airoom
+        run: |
+          if [ -f .npmrc ]; then
+            sed -i 's#@airoom:registry=.*#@airoom:registry=https://registry.npmjs.org#g' .npmrc || true
+          fi
+
+      - name: Install deps (root + workspaces)
+        run: npm ci
+
+      - name: Update Browserslist DB (optional)
+        run: npx update-browserslist-db@latest
+        env:
+          BROWSERSLIST_IGNORE_OLD_DATA: '1'
+
+      - name: Build all packages
+        run: npm run build:all
