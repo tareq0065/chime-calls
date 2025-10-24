@@ -43,10 +43,5 @@ jobs:
       - name: Install deps (root + workspaces)
         run: npm ci
 
-      - name: Update Browserslist DB (optional)
-        run: npx update-browserslist-db@latest
-        env:
-          BROWSERSLIST_IGNORE_OLD_DATA: '1'
-
-      - name: Build all packages
-        run: npm run build:all
+      - name: Build package
+        run: npm run build
